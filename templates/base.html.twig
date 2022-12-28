@@ -2,9 +2,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Mon journal du 5e{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -14,6 +15,62 @@
         {% endblock %}
     </head>
     <body>
+    {# Nav en display flex flex-wrap avec un menu en dropdown #}
+    <nav class="py-2 bg-warning border-bottom">
+        <div class="container d-flex flex-wrap">
+
+            <div class="dropdown">
+                <a class="nav nav-link dropdown-toggle text-black" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Mon Journal
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAdminDash">
+                    <li><a class="dropdown-item" href="{{ path('admin') }}">Tableau</a></li>
+                    <li><a class="dropdown-item" href="#">Menu</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <a class="nav nav-link dropdown-toggle text-black" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Ajouter
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAdminAdd">
+                    <li><a class="dropdown-item" href="#">Article</a></li>
+                    <li><a class="dropdown-item" href="#">Page</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    {# Nav en display flex flex-wrap en justify-content-center avec padding bottom et top (py-3) margin bottom (mb-4) #}
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            {# ajouter dans la class de balise <a: me-md-auto  , si je veux mon titre aligner à gauche (au cas ou) #}
+            <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none" href="{{ path('app_home') }}">
+                {# .fs-4 : est un font-size: 1.5rem !important #}
+                <span class="fs-4">Mon journal du 5e </span>
+            </a>
+
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="#">Connexion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="#">S'inscrire</a>
+                </li>
+            </ul>
+        </header>
+    </div>
         {% block body %}{% endblock %}
+    {# Footer #}
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <span class="copyright">© {{ 'now'|date('Y') }}DanaCano. Tous les droits réservés. </span>
+
+            </div>
+
+        </footer>
+
+    </div>
     </body>
 </html>
