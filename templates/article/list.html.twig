@@ -1,0 +1,4 @@
+{# Boucle for pour les articles sur la page home #}
+{% for article in articles %}
+    {% include 'article/item.html.twig' with { article } %}
+{% endfor %}

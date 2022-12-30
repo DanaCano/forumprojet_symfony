@@ -1,0 +1,28 @@
+{# Condition if for pour les images, description de l'article et le createdAt sur la page home #}
+{% set article_see = path('article_see', { 'slug': article.slug }) %}
+<article class="mb-5">
+    <div class="row">
+        {# Ici pour l'ajout de photo #}
+        <div class="col-md-{{ leftCol ?? 5 }}">
+            {% if article.featuredPicture %}
+                <a href="{{ article_see }}">
+                    <img src="/uploads/{{ article.featuredPicture.filename }}" alt="{{ article.featuredPicture.altText }}" loading="lazy" width="350" height="205">
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="col-md-{{ rightCol ?? 7 }}">
+            <h2>
+                <a class="text-decoration-none" href="{{ article_see }}">{{ article.title }}</a>
+            </h2>
+
+            <p>
+                {# Ici il y a un createdAt avec un pattern de date (pipe) #}
+                {{ article.createdAt|date('d M Y') }}
+                {# Ici il y a un operateur de twig où j'ai fait que la descriptionText ça va afficher uniquement s'il y a un ( ?: ) sinon, s'il est null on va predre les 130 charateres de l'article. #}
+                {{ article.descriptionText ?: article.content|striptags|slice(0, 130) ~ '...' }}
+            </p>
+        </div>
+
+    </div>
+</article>

@@ -1,0 +1,11 @@
+{# Ici j'afffiche/recupérér la liste de toutes mes categories sur ma page home -> Voir HomeController #}
+<div class="p-4">
+    <h4 class="fst-italic">Catégories</h4>
+    <ol class="list-unstyled mb-0">
+        {% for category in categories %}
+            <li>
+                <a class="text-decoration-none text-info" href="{{ path('category_see', { slug: category.slug }) }}">{{ category.name }}</a>
+            </li>
+        {% endfor %}
+    </ol>
+</div>
